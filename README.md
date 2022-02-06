@@ -1,1 +1,1 @@
-# inf-6333-applied-ai
+This proposal involves using machine learning techniques to build a model capable of forecasting when a server will fail. This allows for predictive maintenance and avoids costs associated with server failures and services disruption.
