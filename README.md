@@ -40,12 +40,37 @@ $ minikube service list -p multinode-k8s-cluster
 ```curl http://192.168.67.2:31000```
 
 
-## Install tools
-1. Install Helm
-2. Install Prometheus and Grafana from Bitnami charts
-    1. Install dashboards
-       - https://grafana.com/grafana/dashboards/7249
-       - https://grafana.com/grafana/dashboards/11142
+## Install Helm
+
+## Install Prometheus and Grafana from Bitnami charts
+
+### Install dashboards
+ - https://grafana.com/grafana/dashboards/7249
+ - https://grafana.com/grafana/dashboards/11142
     
-3. Install Chaos Mesh
-4. Create chaos experiment
+
+## Install Chaos Mesh
+``` curl -sSL https://mirrors.chaos-mesh.org/v2.1.3/install.sh | bash ```
+
+### Create chaos experiment
+``` kubectl apply -f network-delay-experiment.yaml ```
+
+## Install Prometheus and Grafana Helm charts
+1. helm repo add bitnami https://charts.bitnami.com/bitnami
+2. helm install bitnami-grafana bitnami/grafana
+3. helm install bitnami-prometheus bitnami/kube-prometheus
+
+### Get Grafana credentials
+```
+$ echo "Username: admin"
+$ echo "Password: $(kubectl get secret bitnami-grafana-admin --namespace default -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 --decode)"
+```
+
+
+### Start Prometheus UI
+
+```
+$ echo "Prometheus URL: http://127.0.0.1:9090/"
+
+$ kubectl port-forward --namespace default svc bitnami-prometheus-kube-pr-prometheus 9090:9090
+```
