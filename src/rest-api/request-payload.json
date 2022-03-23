@@ -1,0 +1,5 @@
+{
+ "dataset": "http://github.com/your_repo/dataset/dummy-dataset.csv",
+ "start_date": "2016-01-01",
+ "end_date": "2020-12-31"
+}
