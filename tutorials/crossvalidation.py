@@ -3,6 +3,8 @@ from sklearn.model_selection import train_test_split
 from sklearn import datasets
 from sklearn import svm
 
+# Using Iris dataset and perform cross validation of SVC classifier
+
 X, y = datasets.load_iris(return_X_y=True)
 X.shape, y.shape
 
